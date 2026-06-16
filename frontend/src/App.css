@@ -1,0 +1,12 @@
+.video-container {
+    width: 100%;
+    max-width: 1000px;
+    aspect-ratio: 16 / 9;
+    object-fit:contain;
+}
+.video-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
