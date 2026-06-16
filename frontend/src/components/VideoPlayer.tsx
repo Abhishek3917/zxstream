@@ -1,0 +1,27 @@
+'use client';
+
+import '@videojs/react/video/skin.css';
+import { createPlayer, videoFeatures } from '@videojs/react';
+import { VideoSkin, Video } from '@videojs/react/video';
+
+const Player = createPlayer({ features: videoFeatures });
+
+interface VideoPlayerProps {
+  src: string
+}
+
+export const VideoPlayer = ({ src }: VideoPlayerProps) => {
+  return (
+    <div className="video-wrapper">
+        <div className="video-container">
+            <Player.Provider>
+              <VideoSkin>
+                <Video src={src} playsInline />
+              </VideoSkin>
+            </Player.Provider>
+        </div>
+    </div>
+
+
+  );
+};
