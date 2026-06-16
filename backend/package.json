@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Abhishek3917/zxstream#readme",
   "dependencies": {
+    "cors": "^2.8.6",
     "express": "^5.2.1",
     "range-parser": "^1.2.1"
   }
