@@ -1,3 +1,4 @@
+const { randomUUID } = require('crypto')
 const express = require('express')
 const fs = require('fs')
 const path = require('path')
@@ -8,6 +9,35 @@ const router = express.Router()
 
 const video_dir = path.join(__dirname,"../videos")
 
+router.get("/list", async (req,res)=>{
+
+    try{
+
+        const files = await fs.promises.readdir(video_dir)
+
+        const video = files
+        .filter(file => file.endsWith(".mp4"))
+        .map(file => ({
+            id: Math.random().toString(36).substring(2),
+            title: file.replace(".mp4",""),
+            url:`/api/video/${file.replace(".mp4","")}`
+                }))
+
+
+        res.json(video)
+
+    }
+    catch(err){
+
+        console.log(err)
+
+        res.status(500).json({
+            error:"Cannot read videos"
+        })
+
+    }
+
+})
 
 router.get("/:id",async (req,res)=>{
 
