@@ -6,7 +6,7 @@ export default function App(){
   return(
     <>
       
-      <VideoPlayer src={getVideoUrl("movie")} />
+      <VideoPlayer src={getVideoUrl("example1")} />
     </>
   )
 }
