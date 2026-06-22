@@ -9,33 +9,47 @@ const router = express.Router()
 
 const video_dir = path.join(__dirname,"../videos")
 
-router.get("/list", async (req,res)=>{
+router.get("/list", async(req,res)=>{
 
-    try{
+try{
 
-        const files = await fs.promises.readdir(video_dir)
-
-        const video = files
-        .filter(file => file.endsWith(".mp4"))
-        .map(file => ({
-            id: Math.random().toString(36).substring(2),
-            title: file.replace(".mp4",""),
-            url:`/api/video/${file.replace(".mp4","")}`
-                }))
+const files =
+await fs.promises.readdir(video_dir);
 
 
-        res.json(video)
+const videos =
+files
+.filter(file=>file.endsWith(".mp4"))
+.map(file=>{
 
-    }
-    catch(err){
+const id =
+file.replace(".mp4","");
 
-        console.log(err)
 
-        res.status(500).json({
-            error:"Cannot read videos"
-        })
+return {
 
-    }
+id,
+
+title:id,
+
+url:`/api/video/${id}`
+
+}
+
+});
+
+
+res.json(videos);
+
+
+}
+catch(err){
+
+res.status(500).json({
+error:"Cannot read videos"
+})
+
+}
 
 })
 

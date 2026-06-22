@@ -14,7 +14,7 @@ export const VideoPlayer = ({ src }: VideoPlayerProps) => {
         <div className="video-container">
             <Player.Provider>
               <VideoSkin>
-                <Video src={src} playsInline />
+                <Video src = {src} playsInline />
               </VideoSkin>
             </Player.Provider>
         </div>

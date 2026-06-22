@@ -1,12 +1,12 @@
-import { getVideoUrl } from "./api/VideoApi";
-import { VideoPlayer } from "./components/VideoPlayer";
+
 import './App.css'
+import VideoList from "./page/VideoList";
 export default function App(){
 
   return(
     <>
       
-      <VideoPlayer src={getVideoUrl("example1")} />
+      <VideoList />
     </>
   )
 }
