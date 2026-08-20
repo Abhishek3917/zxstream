@@ -31,11 +31,36 @@ const mediaSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "Library",
             required: true
-        }
+        },
+        video: {
+            codec: String,
+            width: Number,
+            height: Number,
+            bitrate: Number
+        },
+
+        audio: [
+            {
+                codec: String,
+                language: String,
+                channels: Number
+            }
+        ],
+
+        subtitles: [
+            {
+                language: String
+            }
+        ],
     },
     {
         timestamps: true
-    }
+    },
+);
+
+mediaSchema.index(
+    { library: 1, filePath: 1 },
+    { unique: true }
 );
 
 const Media = mongoose.model("Media", mediaSchema);
