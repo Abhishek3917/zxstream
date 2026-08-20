@@ -26,4 +26,7 @@ dist-ssr
 *.mp4
 package-lock.json
 
+.env
+
+
 
