@@ -1,5 +1,6 @@
 import Library from "../models/library.model.js";
 
+// import { scanDirectory } from "../media/scanner/scanner.service.js";
 export const createLibraryService = async ({name,type,owner,path})=>{
     if(!name || !type || !path){
         throw new Error("all feilds are required")
@@ -77,3 +78,9 @@ export const deleteLibraryServices = async (libraryId,userId)=>{
     }
     return library
 }
+// export const scanLibraryService = async (library)=>{
+    // const files = await scanDirectory(
+        // library.path
+    // );
+    // return files
+// }
