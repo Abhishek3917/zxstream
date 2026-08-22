@@ -93,7 +93,7 @@ export const deleteLibrary = async(req,res,next)=>{
     }
 }
 
-export const scanLibrary = async(req,res)=>{
+export const scanLibrary = async(req,res)=>{    // the scanlibrary and getlibraryservice are in media/scanner/scanner.service.js
     try {
         const {id}=req.params
         const library = await getLibraryService(

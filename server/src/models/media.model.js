@@ -36,7 +36,8 @@ const mediaSchema = new mongoose.Schema(
             codec: String,
             width: Number,
             height: Number,
-            bitrate: Number
+            bitrate: Number,
+            frameRate: String
         },
 
         audio: [
