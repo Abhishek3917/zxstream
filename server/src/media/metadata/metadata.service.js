@@ -2,13 +2,13 @@ import {execFile} from "child_process"
 
 const runFFprobe = (filePath) =>{
     return new Promise((resolve,reject)=>{
-        const args = ["-v","quiet","-print-format","-json","-show-format","-show-streams",filePath]
+        const args = ["-v","quiet","-print_format","json","-show_format","-show_streams",filePath]
         execFile("ffprobe",args,(error,stdout)=>{
             if(error){
                 return reject(error)
             }
             try {
-                const parsedData = json.parse(stdout)
+                const parsedData = JSON.parse(stdout)
                 resolve(parsedData)
             } catch (error) {
                 reject(error)
