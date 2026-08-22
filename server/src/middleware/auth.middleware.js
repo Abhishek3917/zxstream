@@ -17,9 +17,7 @@ export const protectRoute = async (req,res,next) =>{
         if(!decoded){
             return res.status(402).json({message:"Unautorized acess jwt missmatch"})
         }     
-
         const user = await User.findById(decoded.userId).select("-password")
-
         if(!user){
             return res.status(404).json({message:"user not found "})
         }

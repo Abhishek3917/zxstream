@@ -5,14 +5,12 @@ export const signup = async (req,res)=>{
 
     try {
         const {email,password}=req.body
-
         const user = await signupService({
             email,
             password
         })
 
         generateToken(user._id,res);
-
         return res.status(201).json({
             _id:user._id,
             email:user.email
