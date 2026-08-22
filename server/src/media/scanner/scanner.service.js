@@ -72,7 +72,8 @@ export const scanLibraryService = async (library) => {
             title,
             type: library.type,
             filePath: filePath,
-            library: library._id
+            library: library._id,
+            ...metadata
         });
        added++;
     }
