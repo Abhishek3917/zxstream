@@ -19,7 +19,15 @@ const mediaSchema = new mongoose.Schema(
         season: {
             type: Number
         },
+        posterUrl: {
+            type: String,
+            default: null
+        },
 
+        backdropUrl: {
+            type: String,
+            default: null
+        },
         episode: {
             type: Number
         },
