@@ -13,7 +13,7 @@ app.use(cookieparser())
 app.use('/api/auth',authRoutes)
 app.use("/api/libraries", libraryRouter); 
 app.use("/api/media",mediaRouter)
-app.use("api/stream",streamRoute)
+app.use("/api/stream",streamRoute)
 
 const PORT = process.env.PORT
 
