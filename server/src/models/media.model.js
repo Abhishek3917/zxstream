@@ -13,7 +13,16 @@ const mediaSchema = new mongoose.Schema(
             enum: ["movie", "Tv"],
             required: true
         },
+        year: {
+            type: Number
+        },
+        season: {
+            type: Number
+        },
 
+        episode: {
+            type: Number
+        },
         filePath: {
             type: String,
             required: true
@@ -39,7 +48,6 @@ const mediaSchema = new mongoose.Schema(
             bitrate: Number,
             frameRate: String
         },
-
         audio: [
             {
                 codec: String,

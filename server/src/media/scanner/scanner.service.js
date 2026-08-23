@@ -2,6 +2,7 @@ import fs from 'fs/promises'
 import path from 'path'
 import Media from "../../models/media.model.js";
 import { extractMetadata } from '../metadata/metadata.service.js';
+import { identifyMedia } from '../metadata/identification.service.js';
 const VIDEO_EXTENSIONS = [
     ".mp4",
     ".mkv",
@@ -63,14 +64,14 @@ export const scanLibraryService = async (library) => {
             continue;
         }
         const metadata = await extractMetadata(filePath)
-        const title = path.basename(
-                filePath,
-                path.extname(filePath)
-            )
+        const identification = identifyMedia(filePath) 
 
         await Media.create({
-            title,
-            type: library.type,
+            title:identification.title,
+            type: identification.type,
+            year:identification.year,
+            season:identification.season,
+            episode:identification.episode,
             filePath: filePath,
             library: library._id,
             ...metadata
