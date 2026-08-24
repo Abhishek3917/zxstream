@@ -7,6 +7,7 @@ import Home from "./pages/Home"
 import Login from "./pages/Login"
 import Navbar from "./components/Navbar"
 import Library from "./pages/Library"
+import Player from "./pages/Player";
 
 const App = ()=>{
   
@@ -30,7 +31,8 @@ const App = ()=>{
         <Route path='/' element={authUser?<Home/>:<Navigate to="/signup"/> }/>
         <Route path='/signup' element={!authUser ? <Signup />:<Navigate to='/'/>} /> 
         <Route path='/login' element={!authUser ? <Login />:<Navigate to='/'/>} />
-        <Route path="/library/:id" element={ authUser ? <Library /> : <Navigate to="/login" />}/>
+        <Route path="/library/:id" element={ authUser ? <Library /> : <Navigate to="/login"/>}/>
+        <Route path="/watch/:id" element={ authUser ? <Player /> : <Navigate to="/login" />}/>
       </Routes>
         </div>
     </>
