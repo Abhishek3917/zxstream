@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { axiosInstances } from "../axios/axiosInstance";
-
+import toast from "react-hot-toast";
 export const useMediStore = create((set)=>({
     media:[],
     isLoadingMedia:false,
@@ -8,7 +8,7 @@ export const useMediStore = create((set)=>({
     getMedia: async (libraryId) =>{
         set({isLoadingMedia:true})
         try {
-            const res = axiosInstances.get(`/media/library/${libraryId}`)
+            const res = await axiosInstances.get(`/media/library/${libraryId}`)
 
             set({
                 media:res.data
@@ -21,3 +21,4 @@ export const useMediStore = create((set)=>({
         }
     }
 }))
+
