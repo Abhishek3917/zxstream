@@ -6,10 +6,16 @@ import libraryRouter from './routes/library.router.js'
 import mediaRouter from './routes/media.router.js'
 import { connectDB } from './config/db.js'
 import streamRoute from './routes/stream.routes.js'
+import cors from "cors";
 const app = express()
 
 app.use(express.json());
 app.use(cookieparser())
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use('/api/auth',authRoutes)
 app.use("/api/libraries", libraryRouter); 
 app.use("/api/media",mediaRouter)
