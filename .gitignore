@@ -25,7 +25,7 @@ dist-ssr
 
 *.mp4
 package-lock.json
-
+android
 .env
 
 
