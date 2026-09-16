@@ -8,27 +8,35 @@ import Login from "./pages/Login"
 import Navbar from "./components/Navbar"
 import Library from "./pages/Library"
 import Player from "./pages/Player";
+import { useServerStore } from "./store/useServerStore"
+import ServerIp from "./pages/ServerIp"
+import { setApiBaseUrl } from "./axios/axiosInstance"
 
 const App = ()=>{
   
   const {authUser,checkAuth,isCheckingAuth} = useAuthStore()
-  useEffect(()=>{
-    checkAuth()
-  },[checkAuth])
+  const {serverUrl,isConnected} = useServerStore()
+  console.log(isConnected )
+  useEffect(() => {
+    if (!serverUrl) return
+        setApiBaseUrl(serverUrl);
+        checkAuth()
+  }, [serverUrl,checkAuth]);
 
-  if(isCheckingAuth && !authUser){
-    return(
-      <div className="flex items-center justify-center h-screen ">
-        <Loader className="size-10 animate-spin" />
-      </div>
-    )
-  }
+  // if(isCheckingAuth && !authUser && !serverUrl){
+  //   return(
+  //     <div className="flex items-center justify-center h-screen ">
+  //       <Loader className="size-10 animate-spin" />
+  //     </div>
+  //   )
+  // }
   return(
     <>
         <div className="flex-none">
       <Navbar/>
       <Routes>
-        <Route path='/' element={authUser?<Home/>:<Navigate to="/signup"/> }/>
+        <Route path='/' element={!isConnected ? <ServerIp /> : authUser?<Navigate to ='/home'/> : <Navigate to='/signup'/>}/>
+        <Route path='/home' element={authUser?<Home/>:<Navigate to="/signup"/> }/>
         <Route path='/signup' element={!authUser ? <Signup />:<Navigate to='/'/>} /> 
         <Route path='/login' element={!authUser ? <Login />:<Navigate to='/'/>} />
         <Route path="/library/:id" element={ authUser ? <Library /> : <Navigate to="/login"/>}/>

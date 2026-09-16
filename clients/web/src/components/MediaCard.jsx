@@ -18,4 +18,4 @@ const MediaCard = ({ media, onClick }) => {
     );
 };
 
-export default MediaCard;z
+export default MediaCard
