@@ -1,3 +1,7 @@
 import axios from "axios";
 
-export const axiosInstances = axios.create({baseURL:"http://localhost:5001/api/",withCredentials:true})
+export const axiosInstances = axios.create({baseURL:"",withCredentials:true})
+
+export const setApiBaseUrl =(serverUrl)=>{
+    axiosInstances.defaults.baseURL = `http://${serverUrl}:5001/api/`;
+}
