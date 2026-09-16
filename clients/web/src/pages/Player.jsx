@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom";
+import { useServerStore } from "../store/useServerStore";
 
 const Player = () => {
     const { id } = useParams();
+    const {ServerUrl} = useServerStore()
 
-    const streamUrl = `http://localhost:5001/api/stream/${id}`;
-
+    const streamUrl = `http://${ServerUrl}/api/stream/${id}`;
     return (
         <div className="min-h-screen p-6">
             <h1 className="text-2xl font-bold mb-4">

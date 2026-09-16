@@ -49,7 +49,7 @@ const handleSubmit = async (e) =>{
                             required />
                 </div>
                 <button type="submit" className='btn btn-primary w-full' disabled={isLoggingIn}>
-                    {isLoggingIn? "Creating Account....." : "Signup"}
+                    {isLoggingIn? "Please Wait ....." : "Signup"}
                 </button>
             </form>
         </div>
