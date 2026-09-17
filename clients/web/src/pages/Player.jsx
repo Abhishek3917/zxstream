@@ -111,7 +111,7 @@ const Player = () => {
                     <div>
                         <p className="mb-1 text-slate-400">File size</p>
                         <p className="font-medium text-slate-100">
-                            {media.filesize}
+                            {media.fileSize}
                         </p>
                     </div>
                     <div>
@@ -123,7 +123,7 @@ const Player = () => {
                     <div>
                         <p className="mb-1 text-slate-400">Added on</p>
                         <p className="font-medium text-slate-100">
-                            {media.timestamps}
+                            {media.createdAt}
                         </p>
                     </div>
                 </div>
