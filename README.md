@@ -1,6 +1,12 @@
 # ZXStream
 
 ZXStream is a self-hosted media server where users can connect their own server and stream their media through web and mobile clients.
+## Screenshots
+![ZXStream Screenshot 1](./docs/images/img1.png)
+
+![ZXStream Screenshot 2](./docs/images/img2.png)
+
+![ZXStream Screenshot 3](./docs/images/img3.png)
 
 ## Components
 
