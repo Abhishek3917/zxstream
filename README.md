@@ -38,7 +38,7 @@ Each client can connect to the ZXStream server and access the user's media.
 
 ### Web Client
 
-📖 **Web documentation:** [`web/README.md`](./web/README.md)
+📖 **Web documentation:** [`web/README.md`](./clients/web/README.md)
 
 ### Android Client
 
