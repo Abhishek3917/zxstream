@@ -12,4 +12,8 @@ export const generateToken = (userId,res) =>{
         sameSite:"strict",
         secure:process.env.NODE_ENV !=="development"
     })
+
+    res.status(200).json({
+        token:token
+    })
 }
