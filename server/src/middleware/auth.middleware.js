@@ -7,23 +7,21 @@ import User from "../models/auth.model.js"
 // 4. store it in req.user to get access to all where its called
 export const protectRoute = async (req,res,next) =>{
     try {
-        if(!req.cookies.jwt){
-            return res.status(401).json({message: "Unautorized acess not token found"})
+        const cookietoken = req.cookies.jwt
+        const headertoken =  req.headers.authorization?.split(" ")[1]
+        const token = cookietoken || headertoken
+        
+        const decoded = jwt.verify(token,process.env.JWT_SECRETS)
+        if(!decoded){
+            return res.status(401).json({message:"Unautorized access jwt missmatch"})
+        }     
+        const user = await User.findById(decoded.userId).select("-password")
+        if(!user){
+            return res.status(404).json({message:"user not found "})
         }
-        else{
-            const token = req.cookies.jwt
-            const decoded = jwt.verify(token,process.env.JWT_SECRETS)
-            if(!decoded){
-                return res.status(401).json({message:"Unautorized access jwt missmatch"})
-            }     
-            const user = await User.findById(decoded.userId).select("-password")
-            if(!user){
-                return res.status(404).json({message:"user not found "})
-            }
-            req.user = user
-            next()
-        }
-
+        req.user = user
+        next()
+        
     } catch (error) {
         if(error.name === "TokenExpiredError"){
             return res.status(401).json({ message: "Unauthorized: Token has expired" });
