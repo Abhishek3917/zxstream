@@ -10,20 +10,18 @@ export const protectRoute = async (req,res,next) =>{
         if(!req.cookies.jwt){
             return res.status(401).json({message: "Unautorized acess not token found"})
         }
-        else{
-            const token = req.cookies.jwt
-            const decoded = jwt.verify(token,process.env.JWT_SECRETS)
-            if(!decoded){
-                return res.status(401).json({message:"Unautorized access jwt missmatch"})
-            }     
-            const user = await User.findById(decoded.userId).select("-password")
-            if(!user){
-                return res.status(404).json({message:"user not found "})
-            }
-            req.user = user
-            next()
+        const token = req.cookies.jwt
+        const decoded = jwt.verify(token,process.env.JWT_SECRETS)
+        if(!decoded){
+            return res.status(401).json({message:"Unautorized access jwt missmatch"})
+        }     
+        const user = await User.findById(decoded.userId).select("-password")
+        if(!user){
+            return res.status(404).json({message:"user not found "})
         }
-
+        req.user = user
+        next()
+        
     } catch (error) {
         if(error.name === "TokenExpiredError"){
             return res.status(401).json({ message: "Unauthorized: Token has expired" });
