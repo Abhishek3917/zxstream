@@ -8,16 +8,13 @@ import User from "../models/auth.model.js"
 export const protectRoute = async (req,res,next) =>{
     try {
         if(!req.cookies.jwt){
-            return
+            return res.status(401).json({message: "Unautorized acess not token found"})
         }
         else{
             const token = req.cookies.jwt
-            if(!token){
-                return res.status(401).json({message: "Unautorized acess not token found"})
-        }
             const decoded = jwt.verify(token,process.env.JWT_SECRETS)
             if(!decoded){
-                return res.status(401).json({message:"Unautorized acess jwt missmatch"})
+                return res.status(401).json({message:"Unautorized access jwt missmatch"})
             }     
             const user = await User.findById(decoded.userId).select("-password")
             if(!user){
