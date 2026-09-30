@@ -2,13 +2,14 @@ import { useEffect } from "react";
 import {
     View,
     Text,
+    Pressable,
     ActivityIndicator,
 } from "react-native";
+import { router } from "expo-router";
 
 import { useLibraryStore } from "../../store/useLibraryStore";
 
 export default function Home() {
-
     const {
         libraries,
         isLoading,
@@ -33,10 +34,23 @@ export default function Home() {
             <Text>My Libraries</Text>
 
             {libraries.map((library) => (
-                <View key={library._id}>
-                    <Text>{library.name}</Text>
-                    <Text>{library.type}</Text>
-                </View>
+                <Pressable
+                    key={library._id}
+                    onPress={() =>
+                        router.push({
+                            pathname: "/library/[id]",
+                            params: {
+                                id: library._id,
+                            },
+                        })
+                    }
+                >
+                    <View>
+                        <Text>{library.name}</Text>
+                        <Text>{library.type}</Text>
+                        <Text>{library.path}</Text>
+                    </View>
+                </Pressable>
             ))}
         </View>
     );

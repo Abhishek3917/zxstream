@@ -1,13 +1,13 @@
 import { create } from "zustand";
 import { api } from "../services/api";
 type Library = {
-    _id: string;
-    name: string;
-    type: string;
-    owner: string;
-    path: string;
-    createdAt: string;
-    updatedAt: string;
+    _id: string
+    name: string
+    type: string
+    owner: string
+    path: string
+    createdAt: string
+    updatedAt: string
 };
 
 type LibraryState = {
