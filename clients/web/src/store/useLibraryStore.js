@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 export const useLibraryStore = create((set) => ({
     libraries: [],
     isLoadingLibraries: false,
-
     getLibraries: async () => {
         set({ isLoadingLibraries: true });
 
