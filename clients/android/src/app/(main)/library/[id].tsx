@@ -5,9 +5,10 @@ import {
     Pressable,
 } from "react-native";
 import { useLocalSearchParams } from "expo-router";
-import { scanLibrary } from "../../../services/libraryServices";
+import { useLibraryStore } from "@/store/useLibraryStore";
 
 export default function Library() {
+    const {scanLibrary}= useLibraryStore()
     const { id } = useLocalSearchParams<{ id: string }>();
 
     const [isScanning, setIsScanning] = useState(false);

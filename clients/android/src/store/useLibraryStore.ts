@@ -14,6 +14,8 @@ type LibraryState = {
     libraries: Library[]
     isLoading:boolean
     fetchLibraries:()=>Promise<void>
+    scanLibrary:(LibraryId:string)=>Promise<void>
+    getLibraries:()=>Promise<void>
 }
 
 export const useLibraryStore = create<LibraryState>((set)=>({
@@ -30,6 +32,22 @@ export const useLibraryStore = create<LibraryState>((set)=>({
             console.log("Error fetching libraries:", error)
         } finally{
             set({isLoading:false})
+        }
+    },
+    scanLibrary: async(LibraryId:string)=>{
+        try {
+            const res = await api.post(`/libraries/${LibraryId}/scan`)
+            return res.data
+        } catch (error) {
+            return error
+        }
+    },
+    getLibraries: async()=>{
+        try {
+            const res = await api.get("/libraries")
+            return res.data
+        } catch (error) {
+            return error
         }
     }
 }))
